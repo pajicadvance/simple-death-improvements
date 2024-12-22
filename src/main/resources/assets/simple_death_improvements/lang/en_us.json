@@ -1,0 +1,9 @@
+{
+  "text.config.simple_death_improvements.title": "Simple Death Improvements config",
+  "text.config.simple_death_improvements.option.noItemSplatterOnDeath": "Disable item splatter on death",
+  "text.config.simple_death_improvements.option.noDeathItemDespawn": "Don't despawn items dropped on death",
+  "text.config.simple_death_improvements.option.tryItemLavaSaveOnDeath": "Save items from lava on death",
+  "text.config.simple_death_improvements.option.tryItemVoidSaveOnDeath": "Save items from the Void on death",
+  "text.config.simple_death_improvements.option.playerDropMoreXpOnDeath": "Drop more XP on death",
+  "text.config.simple_death_improvements.option.droppedExperiencePercent": "Percent of total XP dropped"
+}

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "simple_death_improvements",
+  "version": "${version}",
+  "name": "Simple Death Improvements",
+  "description": "Less frustrating deaths - no item despawn, no item splatter, item safeguards and more",
+  "authors": ["pajic"],
+  "contact": {},
+  "license": "MIT",
+  "icon": "icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "me.pajic.simpledeathimprovements.Main"
+    ]
+  },
+  "mixins": [
+    "simple_death_improvements.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": [
+      "1.21",
+      "1.21.1"
+    ],
+    "owo-lib": ">=0.12.15"
+  }
+}
