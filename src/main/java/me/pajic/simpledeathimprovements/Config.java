@@ -44,8 +44,16 @@ public class Config
     public static int droppedExperiencePercent;
 
     @SubscribeEvent
-    static void onLoad(final ModConfigEvent event)
-    {
+    static void onLoad(final ModConfigEvent.Loading event) {
+        updateConfig();
+    }
+
+    @SubscribeEvent
+    static void onChange(final ModConfigEvent.Reloading event) {
+        updateConfig();
+    }
+
+    private static void updateConfig() {
         noItemSplatterOnDeath = NO_ITEM_SPLATTER_ON_DEATH.get();
         noDeathItemDespawn = NO_DEATH_ITEM_DESPAWN.get();
         tryItemLavaSaveOnDeath = TRY_ITEM_LAVA_SAVE_ON_DEATH.get();
