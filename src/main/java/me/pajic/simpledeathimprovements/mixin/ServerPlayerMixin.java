@@ -1,18 +1,22 @@
 package me.pajic.simpledeathimprovements.mixin;
 
+import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
+import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
+import me.pajic.simpledeathimprovements.Main;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.core.BlockPos;
 //? if > 1.21.1 {
-/*import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+/*import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
-import me.pajic.simpledeathimprovements.Main;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
+import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -25,8 +29,22 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin extends Player {
 
+    //? if > 1.21.1
+    /*@Shadow public abstract ServerLevel serverLevel();*/
+
     public ServerPlayerMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile) {
         super(level, pos, yRot, gameProfile);
+    }
+
+    @WrapMethod(method = "restoreFrom")
+    private void restoreItems(ServerPlayer that, boolean keepEverything, Operation<Void> original) {
+        if (
+                (Main.CONFIG.keepArmorOnDeath() || Main.CONFIG.keepHotbarOnDeath()) &&
+                !keepEverything && !/*? if <= 1.21.1 {*/level/*?}*//*? if > 1.21.1 {*//*serverLevel*//*?}*/().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !that.isSpectator())
+        {
+            getInventory().replaceWith(that.getInventory());
+        }
+        original.call(that, keepEverything);
     }
 
     //? if > 1.21.1 {

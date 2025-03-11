@@ -5,5 +5,7 @@
   "text.config.simple_death_improvements.option.tryItemLavaSaveOnDeath": "Save items from lava on death",
   "text.config.simple_death_improvements.option.tryItemVoidSaveOnDeath": "Save items from the Void on death",
   "text.config.simple_death_improvements.option.playerDropMoreXpOnDeath": "Drop more XP on death",
-  "text.config.simple_death_improvements.option.droppedExperiencePercent": "Percent of total XP dropped"
+  "text.config.simple_death_improvements.option.droppedExperiencePercent": "Percent of total XP dropped",
+  "text.config.simple_death_improvements.option.keepArmorOnDeath": "Keep armor on death",
+  "text.config.simple_death_improvements.option.keepHotbarOnDeath": "Keep hotbar on death"
 }

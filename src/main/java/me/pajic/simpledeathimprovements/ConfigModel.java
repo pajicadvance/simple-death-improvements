@@ -17,4 +17,6 @@ public class ConfigModel {
     public boolean tryItemVoidSaveOnDeath = true;
     public boolean playerDropMoreXpOnDeath = true;
     @RangeConstraint(min = 1, max = 100) public int droppedExperiencePercent = 80;
+    public boolean keepArmorOnDeath = false;
+    public boolean keepHotbarOnDeath = false;
 }
