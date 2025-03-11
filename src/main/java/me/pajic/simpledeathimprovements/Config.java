@@ -34,6 +34,14 @@ public class Config
             .translation("text.config.simple_death_improvements.option.droppedExperiencePercent")
             .defineInRange("droppedExperiencePercent", 80, 1, 100);
 
+    private static final ModConfigSpec.BooleanValue KEEP_ARMOR_ON_DEATH = BUILDER
+            .translation("text.config.simple_death_improvements.option.keepArmorOnDeath")
+            .define("keepArmorOnDeath", false);
+
+    private static final ModConfigSpec.BooleanValue KEEP_HOTBAR_ON_DEATH = BUILDER
+            .translation("text.config.simple_death_improvements.option.keepHotbarOnDeath")
+            .define("keepHotbarOnDeath", false);
+
     static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean noItemSplatterOnDeath;
@@ -42,6 +50,8 @@ public class Config
     public static boolean tryItemVoidSaveOnDeath;
     public static boolean playerDropMoreXpOnDeath;
     public static int droppedExperiencePercent;
+    public static boolean keepArmorOnDeath;
+    public static boolean keepHotbarOnDeath;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent.Loading event) {
@@ -60,5 +70,7 @@ public class Config
         tryItemVoidSaveOnDeath = TRY_ITEM_VOID_SAVE_ON_DEATH.get();
         playerDropMoreXpOnDeath = PLAYER_DROP_MORE_XP_ON_DEATH.get();
         droppedExperiencePercent = DROPPED_EXPERIENCE_PERCENT.get();
+        keepArmorOnDeath = KEEP_ARMOR_ON_DEATH.get();
+        keepHotbarOnDeath = KEEP_HOTBAR_ON_DEATH.get();
     }
 }
