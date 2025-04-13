@@ -4,6 +4,7 @@
   "package": "me.pajic.simpledeathimprovements.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityMixin",
     "InventoryMixin",
     "PlayerMixin",
     "ServerPlayerMixin"

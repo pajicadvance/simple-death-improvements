@@ -26,6 +26,10 @@ public class Config
             .translation("text.config.simple_death_improvements.option.tryItemVoidSaveOnDeath")
             .define("tryItemVoidSaveOnDeath", true);
 
+    private static final ModConfigSpec.BooleanValue EXPLOSION_RESISTANT_ITEMS = BUILDER
+            .translation("text.config.simple_death_improvements.option.explosionResistantItems")
+            .define("explosionResistantItems", true);
+
     private static final ModConfigSpec.BooleanValue PLAYER_DROP_MORE_XP_ON_DEATH = BUILDER
             .translation("text.config.simple_death_improvements.option.playerDropMoreXpOnDeath")
             .define("playerDropMoreXpOnDeath", true);
@@ -48,6 +52,7 @@ public class Config
     public static boolean noDeathItemDespawn;
     public static boolean tryItemLavaSaveOnDeath;
     public static boolean tryItemVoidSaveOnDeath;
+    public static boolean explosionResistantItems;
     public static boolean playerDropMoreXpOnDeath;
     public static int droppedExperiencePercent;
     public static boolean keepArmorOnDeath;
@@ -68,6 +73,7 @@ public class Config
         noDeathItemDespawn = NO_DEATH_ITEM_DESPAWN.get();
         tryItemLavaSaveOnDeath = TRY_ITEM_LAVA_SAVE_ON_DEATH.get();
         tryItemVoidSaveOnDeath = TRY_ITEM_VOID_SAVE_ON_DEATH.get();
+        explosionResistantItems = EXPLOSION_RESISTANT_ITEMS.get();
         playerDropMoreXpOnDeath = PLAYER_DROP_MORE_XP_ON_DEATH.get();
         droppedExperiencePercent = DROPPED_EXPERIENCE_PERCENT.get();
         keepArmorOnDeath = KEEP_ARMOR_ON_DEATH.get();
