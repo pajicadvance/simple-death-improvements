@@ -15,6 +15,7 @@ public class ConfigModel {
     public boolean noDeathItemDespawn = true;
     public boolean tryItemLavaSaveOnDeath = true;
     public boolean tryItemVoidSaveOnDeath = true;
+    public boolean explosionResistantItems = true;
     public boolean playerDropMoreXpOnDeath = true;
     @RangeConstraint(min = 1, max = 100) public int droppedExperiencePercent = 80;
     public boolean keepArmorOnDeath = false;
