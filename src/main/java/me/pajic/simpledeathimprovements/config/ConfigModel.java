@@ -1,10 +1,12 @@
-package me.pajic.simpledeathimprovements;
+package me.pajic.simpledeathimprovements.config;
 
 import io.wispforest.owo.config.Option;
 import io.wispforest.owo.config.annotation.Config;
 import io.wispforest.owo.config.annotation.Modmenu;
 import io.wispforest.owo.config.annotation.RangeConstraint;
 import io.wispforest.owo.config.annotation.Sync;
+
+import java.util.List;
 
 @Modmenu(modId = "simple_death_improvements")
 @Config(name = "simple_death_improvements", wrapperName = "ModConfig")
@@ -20,4 +22,6 @@ public class ConfigModel {
     @RangeConstraint(min = 1, max = 100) public int droppedExperiencePercent = 80;
     public boolean keepArmorOnDeath = false;
     public boolean keepHotbarOnDeath = false;
+    public AccessoryKeepMode keepAccessories = AccessoryKeepMode.NONE;
+    public List<String> accessoryKeepList = List.of();
 }

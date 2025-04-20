@@ -4,6 +4,8 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import me.pajic.simpledeathimprovements.Main;
 import com.mojang.authlib.GameProfile;
+import me.pajic.simpledeathimprovements.compat.AccessoriesCompat;
+import me.pajic.simpledeathimprovements.config.AccessoryKeepMode;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import org.spongepowered.asm.mixin.Mixin;
@@ -39,10 +41,16 @@ public abstract class ServerPlayerMixin extends Player {
     @WrapMethod(method = "restoreFrom")
     private void restoreItems(ServerPlayer that, boolean keepEverything, Operation<Void> original) {
         if (
-                (Main.CONFIG.keepArmorOnDeath() || Main.CONFIG.keepHotbarOnDeath()) &&
-                !keepEverything && !/*? if <= 1.21.1 {*/level/*?}*//*? if > 1.21.1 {*//*serverLevel*//*?}*/().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !that.isSpectator())
-        {
-            getInventory().replaceWith(that.getInventory());
+                !keepEverything && !that.isSpectator() &&
+                !/*? if <= 1.21.1 {*/level/*?}*//*? if > 1.21.1 {*//*serverLevel*//*?}*/()
+                        .getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)
+        ) {
+            if (Main.CONFIG.keepArmorOnDeath() || Main.CONFIG.keepHotbarOnDeath()) {
+                getInventory().replaceWith(that.getInventory());
+            }
+            if (Main.ACCESSORIES_LOADED && Main.CONFIG.keepAccessories() != AccessoryKeepMode.NONE) {
+                AccessoriesCompat.restoreAccessoryInventory(that);
+            }
         }
         original.call(that, keepEverything);
     }

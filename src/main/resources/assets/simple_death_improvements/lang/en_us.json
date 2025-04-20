@@ -8,5 +8,10 @@
   "text.config.simple_death_improvements.option.droppedExperiencePercent": "Percent of total XP dropped",
   "text.config.simple_death_improvements.option.keepArmorOnDeath": "Keep armor on death",
   "text.config.simple_death_improvements.option.keepHotbarOnDeath": "Keep hotbar on death",
-  "text.config.simple_death_improvements.option.explosionResistantItems": "Explosion resistant items"
+  "text.config.simple_death_improvements.option.explosionResistantItems": "Explosion resistant items",
+  "text.config.simple_death_improvements.option.keepAccessories": "Keep accessories on death",
+  "text.config.simple_death_improvements.option.accessoryKeepList": "Accessory keep list",
+  "text.config.simple_death_improvements.enum.accessoryKeepMode.none": "None",
+  "text.config.simple_death_improvements.enum.accessoryKeepMode.list": "From keep list",
+  "text.config.simple_death_improvements.enum.accessoryKeepMode.all": "All"
 }

@@ -29,6 +29,7 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation("com.terraformersmc:modmenu:${property("modmenu_version")}")
     annotationProcessor modImplementation("io.wispforest:owo-lib:${property("owo_version")}")
+    modCompileOnly "io.wispforest:accessories-fabric:${property("accessories_version")}"
 }
 
 processResources {
