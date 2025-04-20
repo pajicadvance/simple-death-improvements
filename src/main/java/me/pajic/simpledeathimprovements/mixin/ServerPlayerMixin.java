@@ -3,7 +3,10 @@ package me.pajic.simpledeathimprovements.mixin;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.mojang.authlib.GameProfile;
-import me.pajic.simpledeathimprovements.Config;
+import me.pajic.simpledeathimprovements.Main;
+import me.pajic.simpledeathimprovements.compat.AccessoriesCompat;
+import me.pajic.simpledeathimprovements.config.AccessoryKeepMode;
+import me.pajic.simpledeathimprovements.config.Config;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -39,10 +42,16 @@ public abstract class ServerPlayerMixin extends Player {
     @WrapMethod(method = "restoreFrom")
     private void restoreItems(ServerPlayer that, boolean keepEverything, Operation<Void> original) {
         if (
-                (Config.keepArmorOnDeath || Config.keepHotbarOnDeath) &&
-                        !keepEverything && !/*? if <= 1.21.1 {*/level/*?}*//*? if > 1.21.1 {*//*serverLevel*//*?}*/().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !that.isSpectator())
-        {
-            getInventory().replaceWith(that.getInventory());
+                !keepEverything && !that.isSpectator() &&
+                        !/*? if <= 1.21.1 {*/level/*?}*//*? if > 1.21.1 {*//*serverLevel*//*?}*/()
+                                .getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)
+        ) {
+            if (Config.keepArmorOnDeath || Config.keepHotbarOnDeath) {
+                getInventory().replaceWith(that.getInventory());
+            }
+            if (Main.ACCESSORIES_LOADED && Config.keepAccessories != AccessoryKeepMode.NONE) {
+                AccessoriesCompat.restoreAccessoryInventory(that);
+            }
         }
         original.call(that, keepEverything);
     }

@@ -2,7 +2,7 @@ package me.pajic.simpledeathimprovements.mixin;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import me.pajic.simpledeathimprovements.Config;
+import me.pajic.simpledeathimprovements.config.Config;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import org.spongepowered.asm.mixin.Mixin;

@@ -1,9 +1,12 @@
-package me.pajic.simpledeathimprovements;
+package me.pajic.simpledeathimprovements.config;
 
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.event.config.ModConfigEvent;
 import net.neoforged.neoforge.common.ModConfigSpec;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @EventBusSubscriber(modid = "simple_death_improvements", bus = EventBusSubscriber.Bus.MOD)
 public class Config
@@ -46,7 +49,15 @@ public class Config
             .translation("text.config.simple_death_improvements.option.keepHotbarOnDeath")
             .define("keepHotbarOnDeath", false);
 
-    static final ModConfigSpec SPEC = BUILDER.build();
+    private static final ModConfigSpec.EnumValue<AccessoryKeepMode> KEEP_ACCESSORIES = BUILDER
+            .translation("text.config.simple_death_improvements.option.keepAccessories")
+            .defineEnum("keepAccessories", AccessoryKeepMode.NONE);
+
+    private static final ModConfigSpec.ConfigValue<List<? extends String>> ACCESSORY_KEEP_LIST = BUILDER
+            .translation("text.config.simple_death_improvements.option.accessoryKeepList")
+            .defineListAllowEmpty("accessoryKeepList", List.of(), () -> "", o -> true);
+
+    public static final ModConfigSpec SPEC = BUILDER.build();
 
     public static boolean noItemSplatterOnDeath;
     public static boolean noDeathItemDespawn;
@@ -57,6 +68,8 @@ public class Config
     public static int droppedExperiencePercent;
     public static boolean keepArmorOnDeath;
     public static boolean keepHotbarOnDeath;
+    public static AccessoryKeepMode keepAccessories;
+    public static List<String> accessoryKeepList;
 
     @SubscribeEvent
     static void onLoad(final ModConfigEvent.Loading event) {
@@ -78,5 +91,7 @@ public class Config
         droppedExperiencePercent = DROPPED_EXPERIENCE_PERCENT.get();
         keepArmorOnDeath = KEEP_ARMOR_ON_DEATH.get();
         keepHotbarOnDeath = KEEP_HOTBAR_ON_DEATH.get();
+        keepAccessories = KEEP_ACCESSORIES.get();
+        accessoryKeepList = new ArrayList<>(ACCESSORY_KEEP_LIST.get());
     }
 }

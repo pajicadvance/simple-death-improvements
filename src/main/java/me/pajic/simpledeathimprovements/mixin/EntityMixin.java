@@ -1,7 +1,7 @@
 package me.pajic.simpledeathimprovements.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import me.pajic.simpledeathimprovements.Config;
+import me.pajic.simpledeathimprovements.config.Config;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
