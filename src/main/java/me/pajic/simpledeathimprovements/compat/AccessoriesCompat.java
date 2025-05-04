@@ -68,9 +68,12 @@ public class AccessoriesCompat {
     }
 
     public static void restoreAccessoryInventory(ServerPlayer respawnedPlayer) {
-        AccessoriesCapability.getOptionally(respawnedPlayer).ifPresent(accessoriesCapability -> {
-            KEEP_CACHE.get(respawnedPlayer.getUUID()).forEach(accessoriesCapability::attemptToEquipAccessory);
-            KEEP_CACHE.remove(respawnedPlayer.getUUID());
+        AccessoriesCapability.getOptionally(respawnedPlayer).ifPresent(ac -> {
+            UUID uuid = respawnedPlayer.getUUID();
+            if (KEEP_CACHE.containsKey(uuid)) {
+                KEEP_CACHE.get(uuid).forEach(ac::attemptToEquipAccessory);
+                KEEP_CACHE.remove(uuid);
+            }
         });
     }
 }
