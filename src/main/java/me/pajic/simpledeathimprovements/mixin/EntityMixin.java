@@ -16,7 +16,7 @@ public class EntityMixin {
     )
     private boolean preventExplosionsFromDestroyingItems(boolean original) {
         Entity instance = (Entity) (Object) this;
-        if (instance instanceof ItemEntity) return Main.CONFIG.explosionResistantItems() || original;
+        if (instance instanceof ItemEntity) return Main.CONFIG.explosionResistantItems.get() || original;
         return original;
     }
 }

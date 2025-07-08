@@ -6,6 +6,7 @@
   "mixins": [
     "EntityMixin",
     "InventoryMixin",
+    "LivingEntityMixin",
     "PlayerMixin",
     "ServerPlayerMixin"
   ],

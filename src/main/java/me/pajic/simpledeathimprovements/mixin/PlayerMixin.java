@@ -42,7 +42,7 @@ public abstract class PlayerMixin {
     private void preventItemDespawnOnDeath(ItemStack droppedItem, boolean dropAround, boolean includeThrowerName, CallbackInfoReturnable<ItemEntity> cir,
                               @Local ItemEntity itemEntity
     ) {
-        if (Main.CONFIG.noDeathItemDespawn() && self.isDeadOrDying()) {
+        if (Main.CONFIG.noDeathItemDespawn.get() && self.isDeadOrDying()) {
             itemEntity.setUnlimitedLifetime();
         }
     }
@@ -56,7 +56,7 @@ public abstract class PlayerMixin {
             )
     )
     private void preventItemThrowOnDeath(Args args) {
-        if (Main.CONFIG.noItemSplatterOnDeath() && self.isDeadOrDying()) {
+        if (Main.CONFIG.noItemSplatterOnDeath.get() && self.isDeadOrDying()) {
             args.setAll(0.0d, 0.0d, 0.0d);
         }
     }
@@ -70,7 +70,7 @@ public abstract class PlayerMixin {
     )
     private ItemEntity trySaveItemsOnDeath(Level level, double posX, double posY, double posZ, ItemStack itemStack, Operation<ItemEntity> original) {
         if (!lastSafePos.equals(BlockPos.ZERO) && self.isDeadOrDying()) {
-            if (Main.CONFIG.tryItemLavaSaveOnDeath() && self.isInLava() || Main.CONFIG.tryItemVoidSaveOnDeath() && self.getY() < (double) (level.getMinBuildHeight() - 64)) {
+            if (Main.CONFIG.tryItemLavaSaveOnDeath.get() && self.isInLava() || Main.CONFIG.tryItemVoidSaveOnDeath.get() && self.getY() < (double) (level.getMinBuildHeight() - 64)) {
                 return original.call(level, (double) lastSafePos.getX(), (double) lastSafePos.getY() + 1, (double) lastSafePos.getZ(), itemStack);
             }
         }
@@ -94,9 +94,9 @@ public abstract class PlayerMixin {
     //? if > 1.21.1
     /*private int modifyDroppedXpOnDeath(ServerLevel level, Operation<Integer> original) {*/
         //? if <= 1.21.1
-        if (Main.CONFIG.playerDropMoreXpOnDeath() && !self.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
+        if (Main.CONFIG.playerDropMoreXpOnDeath.get() && !self.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
         //? if > 1.21.1
-        /*if (Main.CONFIG.playerDropMoreXpOnDeath() && !level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {*/
+        /*if (Main.CONFIG.playerDropMoreXpOnDeath.get() && !level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {*/
             int xp = 0;
             int xpLevel = self.experienceLevel;
             for (int i = 0; i < xpLevel; i++) {
@@ -105,7 +105,7 @@ public abstract class PlayerMixin {
             }
             self.experienceLevel = xpLevel;
             xp += (int) (self.experienceProgress * self.getXpNeededForNextLevel());
-            return (int) (xp * (float) Main.CONFIG.droppedExperiencePercent() / 100);
+            return (int) (xp * (float) Main.CONFIG.droppedExperiencePercent.get() / 100);
         }
         //? if <= 1.21.1
         return original.call();

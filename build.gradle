@@ -1,6 +1,6 @@
 plugins {
     id 'fabric-loom' version '1.10-SNAPSHOT'
-    id 'maven-publish'
+    id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
 version = project.mod_version + "+" + stonecutter.current.version
@@ -14,6 +14,7 @@ base {
 repositories {
     maven { url = "https://maven.parchmentmc.org" }
     maven { url = "https://maven.terraformersmc.com/" }
+    maven { url = "https://maven.fzzyhmstrs.me/" }
     maven { url = "https://maven.wispforest.io/releases/" }
 }
 
@@ -25,11 +26,11 @@ dependencies {
     }
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
-    modImplementation("com.terraformersmc:modmenu:${property("modmenu_version")}")
-    annotationProcessor modImplementation("io.wispforest:owo-lib:${property("owo_version")}")
-    modCompileOnly "io.wispforest:accessories-fabric:${property("accessories_version")}"
+    modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
+    modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
+    if (stonecutter.eval(stonecutter.current.version, "<1.21.7"))
+        modCompileOnly "io.wispforest:accessories-fabric:${property("accessories_version")}"
 }
 
 processResources {
@@ -68,5 +69,33 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+publishMods {
+    file = remapJar.archiveFile
+    changelog = file(getRootDir().path + "/CHANGELOG.md").text
+    type = STABLE
+    modLoaders.add("fabric")
+    displayName = project.mod_version + " for Fabric " + stonecutter.current.version
+
+    modrinth {
+        accessToken = providers.environmentVariable("MR_KEY")
+        projectId = "2JFsuD70"
+        minecraftVersions.add(stonecutter.current.version)
+        requires("fabric-api", "fzzy-config")
+        optional("modmenu")
+    }
+
+    curseforge {
+        accessToken = providers.environmentVariable("CF_KEY")
+        projectId = "1163907"
+        minecraftVersions.add(stonecutter.current.version)
+        javaVersions.add(stonecutter.eval(stonecutter.current.version, ">=1.20.5")
+                ? JavaVersion.VERSION_21 : JavaVersion.VERSION_17)
+        clientRequired = false
+        serverRequired = true
+        requires("fabric-api", "fzzy-config")
+        optional("modmenu")
     }
 }

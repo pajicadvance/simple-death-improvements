@@ -17,9 +17,11 @@ import java.util.List;
 @Mixin(Inventory.class)
 public class InventoryMixin {
 
+    //? if < 1.21.7 {
     @Shadow @Final public NonNullList<ItemStack> items;
     @Shadow @Final public NonNullList<ItemStack> armor;
     @Shadow @Final public NonNullList<ItemStack> offhand;
+    //?}
 
     @ModifyArg(
             method = "dropAll",
@@ -30,7 +32,7 @@ public class InventoryMixin {
             index = 1
     )
     private boolean preventItemSplatterOnDeath(boolean dropAround) {
-        if (Main.CONFIG.noItemSplatterOnDeath()) {
+        if (Main.CONFIG.noItemSplatterOnDeath.get()) {
             return false;
         }
         return dropAround;
@@ -43,12 +45,20 @@ public class InventoryMixin {
                     target = "Lnet/minecraft/world/item/ItemStack;isEmpty()Z"
             )
     )
+    //? if < 1.21.7 {
     private boolean keepItems(boolean original, @Local List<ItemStack> list, @Local int i) {
-        if (Main.CONFIG.keepArmorOnDeath() && list.equals(armor)) return true;
-        if (Main.CONFIG.keepHotbarOnDeath()) {
+        if (Main.CONFIG.keepArmorOnDeath.get() && list.equals(armor)) return true;
+        if (Main.CONFIG.keepHotbarOnDeath.get()) {
             if (list.equals(offhand)) return true;
             if (list.equals(items) && i < 9) return true;
         }
         return original;
     }
+    //?}
+    //? if >= 1.21.7 {
+    /*private boolean keepHotbarItems(boolean original, @Local int i) {
+        if (Main.CONFIG.keepHotbarOnDeath.get() && i < 9) return true;
+        return original;
+    }
+    *///?}
 }
