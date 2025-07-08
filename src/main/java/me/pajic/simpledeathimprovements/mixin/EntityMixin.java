@@ -1,7 +1,7 @@
 package me.pajic.simpledeathimprovements.mixin;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
-import me.pajic.simpledeathimprovements.config.Config;
+import me.pajic.simpledeathimprovements.Main;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import org.spongepowered.asm.mixin.Mixin;
@@ -16,7 +16,7 @@ public class EntityMixin {
     )
     private boolean preventExplosionsFromDestroyingItems(boolean original) {
         Entity instance = (Entity) (Object) this;
-        if (instance instanceof ItemEntity) return Config.explosionResistantItems || original;
+        if (instance instanceof ItemEntity) return Main.CONFIG.explosionResistantItems.get() || original;
         return original;
     }
 }
