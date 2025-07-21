@@ -5,13 +5,19 @@ import me.pajic.simpledeathimprovements.compat.AccessoriesCompat;
 import me.pajic.simpledeathimprovements.config.ModConfig;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.loader.api.FabricLoader;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
 
 public class Main implements ModInitializer {
     public static final String MOD_ID = "simple_death_improvements";
     public static final ResourceLocation CONFIG_RL = ResourceLocation.fromNamespaceAndPath(MOD_ID, "config");
     public static ModConfig CONFIG = ConfigApiJava.registerAndLoadConfig(ModConfig::new);
     public static final boolean ACCESSORIES_LOADED = FabricLoader.getInstance().isModLoaded("accessories");
+
+    public static ResourceLocation getItemRl(ItemStack item) {
+        return BuiltInRegistries.ITEM.getKey(item.getItem());
+    }
 
     @Override
     public void onInitialize() {

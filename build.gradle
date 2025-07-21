@@ -83,6 +83,8 @@ publishMods {
         accessToken = providers.environmentVariable("MR_KEY")
         projectId = "2JFsuD70"
         minecraftVersions.add(stonecutter.current.version)
+        if (stonecutter.eval(stonecutter.current.version, "1.21.7"))
+            minecraftVersions.add("1.21.8")
         requires("fabric-api", "fzzy-config")
         optional("modmenu")
     }
@@ -91,6 +93,8 @@ publishMods {
         accessToken = providers.environmentVariable("CF_KEY")
         projectId = "1163907"
         minecraftVersions.add(stonecutter.current.version)
+        if (stonecutter.eval(stonecutter.current.version, "1.21.7"))
+            minecraftVersions.add("1.21.8")
         javaVersions.add(stonecutter.eval(stonecutter.current.version, ">=1.20.5")
                 ? JavaVersion.VERSION_21 : JavaVersion.VERSION_17)
         clientRequired = false
