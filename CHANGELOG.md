@@ -1,2 +1,2 @@
-- Updated to Minecraft 1.21.7.
-- Switched config API to Fzzy Config. Your configuration will be reset to default.
+- Updated to Minecraft 1.21.8.
+- Added armor and hotbar drop lists to the mod configuration. When keep armor and/or keep hotbar options are enabled, items from these lists will be dropped anyways.

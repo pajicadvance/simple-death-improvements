@@ -23,8 +23,9 @@ public abstract class EntityEquipmentMixin {
     private void keepOffhandAndEquipment(LivingEntity entity, Operation<Void> original) {
         if (entity instanceof Player && Main.CONFIG.keepHotbarOnDeath.get() || Main.CONFIG.keepArmorOnDeath.get()) {
             items.replaceAll((slot, stack) -> {
-                if (Main.CONFIG.keepHotbarOnDeath.get() && slot.equals(EquipmentSlot.OFFHAND)) return stack;
-                if (Main.CONFIG.keepArmorOnDeath.get() && (
+                if (Main.CONFIG.keepHotbarOnDeath.get() && slot.equals(EquipmentSlot.OFFHAND) &&
+                        !Main.CONFIG.hotbarDropList.contains(Main.getItemRl(stack))) return stack;
+                if (Main.CONFIG.keepArmorOnDeath.get() && !Main.CONFIG.armorDropList.contains(Main.getItemRl(stack)) && (
                         slot.equals(EquipmentSlot.HEAD) ||
                         slot.equals(EquipmentSlot.CHEST) ||
                         slot.equals(EquipmentSlot.LEGS) ||
