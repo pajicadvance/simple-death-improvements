@@ -11,6 +11,8 @@ import net.minecraft.world.item.ItemStack;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyArg;
 
 import java.util.EnumMap;
 
@@ -31,10 +33,25 @@ public abstract class EntityEquipmentMixin {
                         slot.equals(EquipmentSlot.LEGS) ||
                         slot.equals(EquipmentSlot.FEET)
                 )) return stack;
-                entity.drop(stack, true, false);
+                entity.drop(stack, !Main.CONFIG.noItemSplatterOnDeath.get(), false);
                 return ItemStack.EMPTY;
             });
         }
         else original.call(entity);
+    }
+
+    @ModifyArg(
+            method = "dropAll",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/LivingEntity;drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;"
+            ),
+            index = 1
+    )
+    private boolean preventItemSplatterOnDeath(boolean dropAround) {
+        if (Main.CONFIG.noItemSplatterOnDeath.get()) {
+            return false;
+        }
+        return dropAround;
     }
 }
