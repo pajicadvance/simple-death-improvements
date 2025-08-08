@@ -29,8 +29,10 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
-    if (stonecutter.eval(stonecutter.current.version, "<1.21.7"))
-        modCompileOnly "io.wispforest:accessories-fabric:${property("accessories_version")}"
+    if (stonecutter.eval(stonecutter.current.version, "<1.21.7")) {
+        modImplementation "io.wispforest:accessories-fabric:${property("accessories_version")}"
+        modLocalRuntime "io.wispforest:owo-lib:${property("owo_version")}"
+    }
 }
 
 processResources {
