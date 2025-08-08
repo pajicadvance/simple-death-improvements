@@ -4,8 +4,6 @@ import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import me.pajic.simpledeathimprovements.Main;
 import com.mojang.authlib.GameProfile;
-import me.pajic.simpledeathimprovements.compat.AccessoriesCompat;
-import me.pajic.simpledeathimprovements.config.AccessoryKeepMode;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import org.jetbrains.annotations.NotNull;
@@ -57,9 +55,6 @@ public abstract class ServerPlayerMixin extends Player {
         ) {
             if (Main.CONFIG.keepArmorOnDeath.get() || Main.CONFIG.keepHotbarOnDeath.get()) {
                 getInventory().replaceWith(that.getInventory());
-            }
-            if (Main.ACCESSORIES_LOADED && Main.CONFIG.keepAccessories.get() != AccessoryKeepMode.NONE) {
-                AccessoriesCompat.restoreAccessoryInventory(that);
             }
         }
         original.call(that, keepEverything);
