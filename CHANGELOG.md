@@ -1,2 +1,2 @@
-- Updated to Minecraft 1.21.8.
-- Added armor and hotbar drop lists to the mod configuration. When keep armor and/or keep hotbar options are enabled, items from these lists will be dropped anyways.
+- Improved Accessories compatibility and fixed a bug where accessories equipped in cosmetic slots would override the normal accessory slots on death when "Keep accessories on death" is set to "All" or "From keep list".
+- Fixed a bug which caused the "No item splatter" option to not apply to armor and offhand items on Minecraft 1.21.7 and above.
