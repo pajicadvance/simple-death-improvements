@@ -17,10 +17,10 @@ public class AccessoriesCompat {
                     return DropRule.KEEP;
                 }
                 case LIST -> {
-                    return Main.CONFIG.accessoryKeepList.get().contains(BuiltInRegistries.ITEM.getKey(stack.getItem())) ? DropRule.KEEP : DropRule.DEFAULT;
+                    return Main.CONFIG.accessoryKeepList.get().contains(BuiltInRegistries.ITEM.getKey(stack.getItem())) ? DropRule.KEEP : dropRule;
                 }
                 case NONE -> {
-                    return DropRule.DEFAULT;
+                    return dropRule;
                 }
             }
             return dropRule;
