@@ -4,11 +4,13 @@
   "package": "me.pajic.simpledeathimprovements.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityEquipmentMixin",
     "EntityMixin",
     "InventoryMixin",
     "LivingEntityMixin",
     "PlayerMixin",
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "compat.AccessoriesForgeMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -8,7 +8,8 @@
     "InventoryMixin",
     "LivingEntityMixin",
     "PlayerMixin",
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "compat.AccessoriesForgeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
