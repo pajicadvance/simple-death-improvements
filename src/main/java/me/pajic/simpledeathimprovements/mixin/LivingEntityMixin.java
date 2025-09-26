@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import me.pajic.simpledeathimprovements.Main;
+import me.pajic.simpledeathimprovements.access.PlayerAccess;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -24,7 +25,6 @@ public class LivingEntityMixin {
 
     //? if >= 1.21.7 {
     /*@Unique LivingEntity self = (LivingEntity) (Object) this;
-    @Unique BlockPos lastSafePos = BlockPos.ZERO;
 
     @Inject(
             method = "createItemStackToDrop",
@@ -38,6 +38,7 @@ public class LivingEntityMixin {
     ) {
         if (self instanceof Player && Main.CONFIG.noDeathItemDespawn.get() && self.isDeadOrDying()) {
             itemEntity.setUnlimitedLifetime();
+            Main.debugLog("Set infinite lifetime to items dropped by player {}", self.getDisplayName().getString());
         }
     }
 
@@ -52,6 +53,7 @@ public class LivingEntityMixin {
     private void preventItemThrowOnDeath(Args args) {
         if (self instanceof Player && Main.CONFIG.noItemSplatterOnDeath.get() && self.isDeadOrDying()) {
             args.setAll(0.0d, 0.0d, 0.0d);
+            Main.debugLog("Prevented item splatter for player {}", self.getDisplayName().getString());
         }
     }
 
@@ -63,22 +65,14 @@ public class LivingEntityMixin {
             )
     )
     private ItemEntity trySaveItemsOnDeath(Level level, double posX, double posY, double posZ, ItemStack itemStack, Operation<ItemEntity> original) {
-        if (self instanceof Player && !lastSafePos.equals(BlockPos.ZERO) && self.isDeadOrDying()) {
-            if (Main.CONFIG.tryItemLavaSaveOnDeath.get() && self.isInLava() || Main.CONFIG.tryItemVoidSaveOnDeath.get() && self.getY() < (double) (level.getMinY() - 64)) {
-                return original.call(level, (double) lastSafePos.getX(), (double) lastSafePos.getY() + 1, (double) lastSafePos.getZ(), itemStack);
+        if (self instanceof Player player && self.isDeadOrDying()) {
+            BlockPos lastSafePos = ((PlayerAccess) player).sdi$getLastSafeBlockPosition();
+            if (!lastSafePos.equals(BlockPos.ZERO) && Main.CONFIG.tryItemLavaSaveOnDeath.get() && self.isInLava() || Main.CONFIG.tryItemVoidSaveOnDeath.get() && self.getY() < (double) (level.getMinY() - 64)) {
+                Main.debugLog("Dropped items for player {} at {} {} {}", self.getDisplayName().getString(), lastSafePos.getX(), lastSafePos.getY(), lastSafePos.getZ());
+                return original.call(level, (double) lastSafePos.getX() + 0.5, (double) lastSafePos.getY() + 1, (double) lastSafePos.getZ() + 0.5, itemStack);
             }
         }
         return original.call(level, posX, posY, posZ, itemStack);
-    }
-
-    @Inject(
-            method = "tick",
-            at = @At("HEAD")
-    )
-    private void trackLastSafeSpot(CallbackInfo ci) {
-        if (self instanceof Player && self.getBlockStateOn().entityCanStandOn(self.level(), self.getOnPos(), self) && !self.isInLava()) {
-            lastSafePos = self.getOnPos();
-        }
     }
     *///?}
 }

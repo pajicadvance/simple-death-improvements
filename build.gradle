@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.10-SNAPSHOT'
+    id 'fabric-loom' version '1.11-SNAPSHOT'
     id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
@@ -16,6 +16,17 @@ repositories {
     maven { url = "https://maven.terraformersmc.com/" }
     maven { url = "https://maven.fzzyhmstrs.me/" }
     maven { url = "https://maven.wispforest.io/releases/" }
+    exclusiveContent {
+        forRepository {
+            maven {
+                name = "Modrinth"
+                url = "https://api.modrinth.com/maven"
+            }
+        }
+        filter {
+            includeGroup "maven.modrinth"
+        }
+    }
 }
 
 dependencies {
@@ -29,10 +40,11 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
-    if (stonecutter.eval(stonecutter.current.version, "<1.21.7")) {
-        modImplementation "io.wispforest:accessories-fabric:${property("accessories_version")}"
-        modLocalRuntime "io.wispforest:owo-lib:${property("owo_version")}"
-    }
+    modImplementation "io.wispforest:accessories-fabric:${property("accessories_version")}"
+    modLocalRuntime "io.wispforest:owo-lib:${property("owo_version")}"
+    modRuntimeOnly "maven.modrinth:tax-free-levels:${property("taxfreelevels_version")}"
+    modRuntimeOnly "maven.modrinth:cloth-config:${property("cloth_version")}"
+    modRuntimeOnly "maven.modrinth:accessorify:${property("accessorify_version")}"
 }
 
 processResources {
@@ -85,8 +97,6 @@ publishMods {
         accessToken = providers.environmentVariable("MR_KEY")
         projectId = "2JFsuD70"
         minecraftVersions.add(stonecutter.current.version)
-        if (stonecutter.eval(stonecutter.current.version, "1.21.7"))
-            minecraftVersions.add("1.21.8")
         requires("fabric-api", "fzzy-config")
         optional("modmenu")
     }
@@ -95,8 +105,6 @@ publishMods {
         accessToken = providers.environmentVariable("CF_KEY")
         projectId = "1163907"
         minecraftVersions.add(stonecutter.current.version)
-        if (stonecutter.eval(stonecutter.current.version, "1.21.7"))
-            minecraftVersions.add("1.21.8")
         javaVersions.add(stonecutter.eval(stonecutter.current.version, ">=1.20.5")
                 ? JavaVersion.VERSION_21 : JavaVersion.VERSION_17)
         clientRequired = false

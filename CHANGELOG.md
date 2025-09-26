@@ -1,2 +1,3 @@
-- Improved Accessories compatibility and fixed a bug where accessories equipped in cosmetic slots would override the normal accessory slots on death when "Keep accessories on death" is set to "All" or "From keep list".
-- Fixed a bug which caused the "No item splatter" option to not apply to armor and offhand items on Minecraft 1.21.7 and above.
+- Safeguarded items will now be dropped at the center of the last safe position instead of the edge.
+- Last safe position is now saved on exit, preventing item loss after rejoining while in a bad situation.
+- [NeoForge] Fixed "No item splatter" and "No item despawn" not applying to items equipped in accessory slots.

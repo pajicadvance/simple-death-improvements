@@ -1,12 +1,14 @@
-plugins.apply "dev.kikugie.stonecutter"
+plugins {
+    id "dev.kikugie.stonecutter"
+}
 stonecutter.active "1.21.1" /* [SC] DO NOT EDIT */
 
-stonecutter.registerChiseled tasks.register("chiseledBuild", stonecutter.chiseled) { 
-    setGroup "project"
-    ofTask "build"
+tasks.register("runActiveClient") {
+    group = "fabric"
+    dependsOn(":${stonecutter.current.project}:runClient")
 }
 
-stonecutter.registerChiseled tasks.register("chiseledPublish", stonecutter.chiseled) {
-    setGroup "project"
-    ofTask "publishMods"
+tasks.register("runActiveServer") {
+    group = "fabric"
+    dependsOn(":${stonecutter.current.project}:runServer")
 }
