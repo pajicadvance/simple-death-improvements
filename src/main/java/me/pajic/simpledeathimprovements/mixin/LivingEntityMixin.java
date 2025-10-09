@@ -24,7 +24,7 @@ import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 public class LivingEntityMixin {
 
     //? if >= 1.21.7 {
-    /*@Unique LivingEntity self = (LivingEntity) (Object) this;
+    @Unique LivingEntity self = (LivingEntity) (Object) this;
 
     @Inject(
             method = "createItemStackToDrop",
@@ -74,5 +74,5 @@ public class LivingEntityMixin {
         }
         return original.call(level, posX, posY, posZ, itemStack);
     }
-    *///?}
+    //?}
 }

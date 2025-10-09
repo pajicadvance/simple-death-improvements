@@ -1,3 +1,1 @@
-- Safeguarded items will now be dropped at the center of the last safe position instead of the edge.
-- Last safe position is now saved on exit, preventing item loss after rejoining while in a bad situation.
-- [NeoForge] Fixed "No item splatter" and "No item despawn" not applying to items equipped in accessory slots.
+- Updated to Minecraft 1.21.10.

@@ -1,9 +1,9 @@
 package me.pajic.simpledeathimprovements.compat;
 
 //? if <= 1.21.1
-import io.wispforest.accessories.api.DropRule;
+/*import io.wispforest.accessories.api.DropRule;*/
 //? if >= 1.21.8
-/*import io.wispforest.accessories.api.events.DropRule;*/
+import io.wispforest.accessories.api.events.DropRule;
 import io.wispforest.accessories.api.events.OnDropCallback;
 import me.pajic.simpledeathimprovements.Main;
 import net.minecraft.core.registries.BuiltInRegistries;

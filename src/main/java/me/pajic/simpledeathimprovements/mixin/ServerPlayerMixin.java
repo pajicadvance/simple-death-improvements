@@ -18,18 +18,17 @@ import org.spongepowered.asm.mixin.Shadow;
 public abstract class ServerPlayerMixin extends Player {
 
     //? if >= 1.21.7
-    /*@Shadow public abstract @NotNull ServerLevel level();*/
+    @Shadow public abstract @NotNull ServerLevel level();
 
     //? if < 1.21.7 {
-    public ServerPlayerMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile) {
+    /*public ServerPlayerMixin(Level level, BlockPos pos, float yRot, GameProfile gameProfile) {
         super(level, pos, yRot, gameProfile);
     }
-    //?}
-    //? if >= 1.21.7 {
-    /*public ServerPlayerMixin(Level level, GameProfile gameProfile) {
+    *///?} else {
+    public ServerPlayerMixin(Level level, GameProfile gameProfile) {
         super(level, gameProfile);
     }
-    *///?}
+    //?}
 
     @WrapMethod(method = "restoreFrom")
     private void restoreItems(ServerPlayer that, boolean keepEverything, Operation<Void> original) {

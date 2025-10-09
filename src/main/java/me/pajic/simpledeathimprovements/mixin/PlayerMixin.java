@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.At;
 //? if <= 1.21.1 {
-import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+/*import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -25,12 +25,11 @@ import org.spongepowered.asm.mixin.injection.ModifyArgs;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 import net.minecraft.nbt.CompoundTag;
-//?}
-//? if > 1.21.1 {
-/*import net.minecraft.server.level.ServerLevel;
+*///?} else {
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
-*///?}
+//?}
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements PlayerAccess {
@@ -43,7 +42,7 @@ public abstract class PlayerMixin implements PlayerAccess {
     @Unique int delayBeforeTracking = 100;
 
     //? if <= 1.21.1 {
-    @Inject(
+    /*@Inject(
             method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;",
             at = @At(
                     value = "INVOKE",
@@ -90,7 +89,7 @@ public abstract class PlayerMixin implements PlayerAccess {
         }
         return original.call(level, posX, posY, posZ, itemStack);
     }
-    //?}
+    *///?}
 
     @Inject(
             method = "tick",
@@ -110,13 +109,13 @@ public abstract class PlayerMixin implements PlayerAccess {
 
     @WrapMethod(method = "getBaseExperienceReward")
     //? if <= 1.21.1
-    private int modifyDroppedXpOnDeath(Operation<Integer> original) {
+    /*private int modifyDroppedXpOnDeath(Operation<Integer> original) {*/
     //? if > 1.21.1
-    /*private int modifyDroppedXpOnDeath(ServerLevel level, Operation<Integer> original) {*/
+    private int modifyDroppedXpOnDeath(ServerLevel level, Operation<Integer> original) {
         //? if <= 1.21.1
-        if (Main.CONFIG.playerDropMoreXpOnDeath.get() && !self.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
+        /*if (Main.CONFIG.playerDropMoreXpOnDeath.get() && !self.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {*/
         //? if > 1.21.1
-        /*if (Main.CONFIG.playerDropMoreXpOnDeath.get() && !level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {*/
+        if (Main.CONFIG.playerDropMoreXpOnDeath.get() && !level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
             int xp = 0;
             int xpLevel = self.experienceLevel;
             for (int i = 0; i < xpLevel; i++) {
@@ -128,13 +127,13 @@ public abstract class PlayerMixin implements PlayerAccess {
             return (int) (xp * (float) Main.CONFIG.droppedExperiencePercent.get() / 100);
         }
         //? if <= 1.21.1
-        return original.call();
+        /*return original.call();*/
         //? if > 1.21.1
-        /*return original.call(level);*/
+        return original.call(level);
     }
 
     //? if <= 1.21.1 {
-    @Inject(
+    /*@Inject(
             method = "addAdditionalSaveData",
             at = @At("TAIL")
     )
@@ -156,9 +155,9 @@ public abstract class PlayerMixin implements PlayerAccess {
         lastSafePos = new BlockPos(x, y, z);
         Main.debugLog("Loaded safe position {} {} {} for player {}", x, y, z, getDisplayName().getString());
     }
-    //?}
+    *///?}
     //? if >= 1.21.8 {
-    /*@Inject(
+    @Inject(
             method = "addAdditionalSaveData",
             at = @At("TAIL")
     )
@@ -180,7 +179,7 @@ public abstract class PlayerMixin implements PlayerAccess {
         lastSafePos = new BlockPos(x, y, z);
         Main.debugLog("Loaded safe position {} {} {} for player {}", x, y, z, getDisplayName().getString());
     }
-    *///?}
+    //?}
 
     @Override
     public BlockPos sdi$getLastSafeBlockPosition() {

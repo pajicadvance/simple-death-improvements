@@ -40,11 +40,15 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
-    modImplementation "io.wispforest:accessories-fabric:${property("accessories_version")}"
-    modLocalRuntime "io.wispforest:owo-lib:${property("owo_version")}"
-    modRuntimeOnly "maven.modrinth:tax-free-levels:${property("taxfreelevels_version")}"
-    modRuntimeOnly "maven.modrinth:cloth-config:${property("cloth_version")}"
-    modRuntimeOnly "maven.modrinth:accessorify:${property("accessorify_version")}"
+    modCompileOnly("io.wispforest:accessories-fabric:${property("accessories_version")}") {
+        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+    }
+    modCompileOnly("io.wispforest:owo-lib:${property("owo_version")}") {
+        exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
+    }
+    //modRuntimeOnly "maven.modrinth:tax-free-levels:${property("taxfreelevels_version")}"
+    //modRuntimeOnly "maven.modrinth:cloth-config:${property("cloth_version")}"
+    //modRuntimeOnly "maven.modrinth:accessorify:${property("accessorify_version")}"
 }
 
 processResources {

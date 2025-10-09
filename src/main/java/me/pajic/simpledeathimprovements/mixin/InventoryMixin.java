@@ -18,10 +18,10 @@ import java.util.List;
 public class InventoryMixin {
 
     //? if < 1.21.7 {
-    @Shadow @Final public NonNullList<ItemStack> items;
+    /*@Shadow @Final public NonNullList<ItemStack> items;
     @Shadow @Final public NonNullList<ItemStack> armor;
     @Shadow @Final public NonNullList<ItemStack> offhand;
-    //?}
+    *///?}
 
     @ModifyArg(
             method = "dropAll",
@@ -46,7 +46,7 @@ public class InventoryMixin {
             )
     )
     //? if < 1.21.7 {
-    private boolean keepItems(boolean original, @Local List<ItemStack> list, @Local ItemStack item, @Local int i) {
+    /*private boolean keepItems(boolean original, @Local List<ItemStack> list, @Local ItemStack item, @Local int i) {
         if (Main.CONFIG.keepArmorOnDeath.get() && list.equals(armor) && !Main.CONFIG.armorDropList.contains(Main.getItemRl(item))) return true;
         if (Main.CONFIG.keepHotbarOnDeath.get() && !Main.CONFIG.hotbarDropList.contains(Main.getItemRl(item))) {
             if (list.equals(offhand)) return true;
@@ -54,11 +54,10 @@ public class InventoryMixin {
         }
         return original;
     }
-    //?}
-    //? if >= 1.21.7 {
-    /*private boolean keepHotbarItems(boolean original, @Local ItemStack item, @Local int i) {
+    *///?} else {
+    private boolean keepHotbarItems(boolean original, @Local ItemStack item, @Local int i) {
         if (Main.CONFIG.keepHotbarOnDeath.get() && i < 9 && !Main.CONFIG.hotbarDropList.contains(Main.getItemRl(item))) return true;
         return original;
     }
-    *///?}
+    //?}
 }
