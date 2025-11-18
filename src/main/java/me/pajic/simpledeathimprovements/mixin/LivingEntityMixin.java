@@ -46,8 +46,7 @@ public class LivingEntityMixin {
             method = "createItemStackToDrop",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/item/ItemEntity;setDeltaMovement(DDD)V",
-                    ordinal = 1
+                    target = "Lnet/minecraft/world/entity/item/ItemEntity;setDeltaMovement(DDD)V"
             )
     )
     private void preventItemThrowOnDeath(Args args) {

@@ -62,8 +62,7 @@ public abstract class PlayerMixin implements PlayerAccess {
             method = "drop(Lnet/minecraft/world/item/ItemStack;ZZ)Lnet/minecraft/world/entity/item/ItemEntity;",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/item/ItemEntity;setDeltaMovement(DDD)V",
-                    ordinal = 1
+                    target = "Lnet/minecraft/world/entity/item/ItemEntity;setDeltaMovement(DDD)V"
             )
     )
     private void preventItemThrowOnDeath(Args args) {

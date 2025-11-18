@@ -1,1 +1,1 @@
-- Updated to Minecraft 1.21.10.
+- Fixed "No item splatter" not working with some modded slots.

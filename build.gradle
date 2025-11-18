@@ -1,5 +1,5 @@
 plugins {
-    id 'fabric-loom' version '1.11-SNAPSHOT'
+    id 'fabric-loom' version '1.13-SNAPSHOT'
     id "me.modmuss50.mod-publish-plugin" version "0.8.4"
 }
 
@@ -40,15 +40,15 @@ dependencies {
     modImplementation "net.fabricmc.fabric-api:fabric-api:${property("fabric_version")}"
     modImplementation "me.fzzyhmstrs:fzzy_config:${property("fzzy_version")}"
     modImplementation "com.terraformersmc:modmenu:${property("modmenu_version")}"
-    modCompileOnly("io.wispforest:accessories-fabric:${property("accessories_version")}") {
+    modImplementation("io.wispforest:accessories-fabric:${property("accessories_version")}") {
         exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
     }
-    modCompileOnly("io.wispforest:owo-lib:${property("owo_version")}") {
+    modImplementation("io.wispforest:owo-lib:${property("owo_version")}") {
         exclude group: "net.fabricmc.fabric-api", module: "fabric-api"
     }
     //modRuntimeOnly "maven.modrinth:tax-free-levels:${property("taxfreelevels_version")}"
     //modRuntimeOnly "maven.modrinth:cloth-config:${property("cloth_version")}"
-    //modRuntimeOnly "maven.modrinth:accessorify:${property("accessorify_version")}"
+    modRuntimeOnly "maven.modrinth:accessorify:${property("accessorify_version")}"
 }
 
 processResources {
