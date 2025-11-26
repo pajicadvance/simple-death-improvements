@@ -76,6 +76,8 @@ repositories {
 	maven("https://maven.parchmentmc.org") { name = "ParchmentMC" }
 	maven("https://maven.fzzyhmstrs.me/") { name = "Fzzy Config" }
 	maven("https://thedarkcolour.github.io/KotlinForForge/") { name = "KotlinForForge" }
+	maven("https://maven.wispforest.io/releases") { name = "Wisp Forest" }
+	maven("https://maven.su5ed.dev/releases") { name = "su5ed" }
 	maven("https://jitpack.io") { name = "Jitpack" }
 	exclusiveContent {
 		forRepository { maven("https://api.modrinth.com/maven") { name = "Modrinth" } }
@@ -84,11 +86,14 @@ repositories {
 }
 
 dependencies {
-	implementation( "me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
+	implementation("me.fzzyhmstrs:fzzy_config:${prop("deps.fzzy_config")}+neoforge")
 	implementation("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
 	jarJar("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
-	implementation("com.github.ramixin:mixson-neoforge:${prop("deps.mixson")}")
-	jarJar("com.github.ramixin:mixson-neoforge:${prop("deps.mixson")}")
+
+	implementation("io.wispforest:accessories-neoforge:${prop("deps.accessories")}")
+	compileOnlyApi("org.sinytra.forgified-fabric-api:fabric-api-base:0.4.42+d1308dedd1") {
+		exclude(group = "fabric-api")
+	}
 }
 
 tasks.named("createMinecraftArtifacts") {

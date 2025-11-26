@@ -1,0 +1,21 @@
+{
+  "simple_death_improvements.config": "Simple Death Improvements config",
+  "simple_death_improvements.config.noItemSplatterOnDeath": "Disable item splatter on death",
+  "simple_death_improvements.config.noDeathItemDespawn": "Don't despawn items dropped on death",
+  "simple_death_improvements.config.tryItemLavaSaveOnDeath": "Save items from lava on death",
+  "simple_death_improvements.config.tryItemVoidSaveOnDeath": "Save items from the Void on death",
+  "simple_death_improvements.config.playerDropMoreXpOnDeath": "Drop more XP on death",
+  "simple_death_improvements.config.droppedExperiencePercent": "Percent of total XP dropped",
+  "simple_death_improvements.config.keepArmorOnDeath": "Keep armor on death",
+  "simple_death_improvements.config.armorDropList": "Armor drop list",
+  "simple_death_improvements.config.armorDropList.desc": "When keep armor is on, items from this list will be dropped anyways.",
+  "simple_death_improvements.config.keepHotbarOnDeath": "Keep hotbar on death",
+  "simple_death_improvements.config.hotbarDropList": "Hotbar drop list",
+  "simple_death_improvements.config.hotbarDropList.desc": "When keep hotbar is on, items from this list will be dropped anyways.",
+  "simple_death_improvements.config.explosionResistantItems": "Explosion resistant items",
+  "simple_death_improvements.config.keepAccessories": "Keep accessories on death",
+  "simple_death_improvements.config.accessoryKeepList": "Accessory keep list",
+  "simple_death_improvements.accessoryKeepMode.NONE": "None",
+  "simple_death_improvements.accessoryKeepMode.LIST": "From keep list",
+  "simple_death_improvements.accessoryKeepMode.ALL": "All"
+}

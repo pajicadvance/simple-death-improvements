@@ -1,8 +1,8 @@
-package me.pajic.modid.platform.fabric;
+package me.pajic.simple_death_improvements.platform.fabric;
 
 //? fabric {
 
-import me.pajic.modid.platform.Platform;
+import me.pajic.simple_death_improvements.platform.Platform;
 import net.fabricmc.loader.api.FabricLoader;
 
 public class FabricPlatform implements Platform {
@@ -20,11 +20,6 @@ public class FabricPlatform implements Platform {
 	@Override
 	public String mcVersion() {
 		return FabricLoader.getInstance().getRawGameVersion();
-	}
-
-	@Override
-	public String packPath(VersionedPackType versionedPackType) {
-		return mcVersion().replace(".", "_") + versionedPackType.getName();
 	}
 
 	@Override

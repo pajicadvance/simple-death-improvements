@@ -1,8 +1,8 @@
-package me.pajic.modid.platform.neoforge;
+package me.pajic.simple_death_improvements.platform.neoforge;
 
 //? neoforge {
-/*
-import me.pajic.modid.platform.Platform;
+
+/*import me.pajic.simple_death_improvements.platform.Platform;
 import net.neoforged.fml.ModList;
 import net.neoforged.fml.loading.FMLLoader;
 
@@ -21,11 +21,6 @@ public class NeoforgePlatform implements Platform {
 	@Override
 	public String mcVersion() {
 		return FMLLoader/^? if 1.21.1 {^//^.versionInfo()^//^?} else {^/.getCurrent().getVersionInfo()/^?}^/.mcVersion();
-	}
-
-	@Override
-	public String packPath(VersionedPackType versionedPackType) {
-		return "resourcepacks/" + mcVersion().replace(".", "_") + versionedPackType.getName();
 	}
 
 	@Override
