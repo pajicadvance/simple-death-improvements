@@ -28,7 +28,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.storage.ValueInput;
 import net.minecraft.world.level.storage.ValueOutput;
 //?}
-import net.minecraft.world.level./*? if > 1.21.10 {*//*gamerules.*//*?}*/GameRules;
+import net.minecraft.world.level./*? if > 1.21.10 {*/gamerules./*?}*/GameRules;
 
 @Mixin(Player.class)
 public abstract class PlayerMixin implements PlayerAccess {
@@ -113,7 +113,7 @@ public abstract class PlayerMixin implements PlayerAccess {
         //? if 1.21.1
         //if (SDI.CONFIG.playerDropMoreXpOnDeath.get() && !self.level().getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY)) {
         //? if > 1.21.1
-        if (SDI.CONFIG.playerDropMoreXpOnDeath.get() && !level.getGameRules()./*? if > 1.21.10 {*//*get*//*?} else {*/getBoolean/*?}*/(GameRules./*? if > 1.21.10 {*//*KEEP_INVENTORY*//*?} else {*/RULE_KEEPINVENTORY/*?}*/)) {
+        if (SDI.CONFIG.playerDropMoreXpOnDeath.get() && !level.getGameRules()./*? if > 1.21.10 {*/get/*?} else {*//*getBoolean*//*?}*/(GameRules./*? if > 1.21.10 {*/KEEP_INVENTORY/*?} else {*//*RULE_KEEPINVENTORY*//*?}*/)) {
             int xp = 0;
             int xpLevel = self.experienceLevel;
             for (int i = 0; i < xpLevel; i++) {

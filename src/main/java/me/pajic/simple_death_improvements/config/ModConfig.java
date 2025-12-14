@@ -9,7 +9,7 @@ import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 import me.pajic.simple_death_improvements.SDI;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 
 @Version(version = 1)
 public class ModConfig extends Config {
@@ -25,9 +25,9 @@ public class ModConfig extends Config {
 	public ValidatedBoolean playerDropMoreXpOnDeath = new ValidatedBoolean(true);
 	public ValidatedInt droppedExperiencePercent = new ValidatedInt(80, 100, 1);
 	public ValidatedBoolean keepArmorOnDeath = new ValidatedBoolean(false);
-	public ValidatedList<ResourceLocation> armorDropList = ValidatedIdentifier.ofRegistry(ResourceLocation.withDefaultNamespace("diamond_chestplate"), BuiltInRegistries.ITEM).toList();
+	public ValidatedList<Identifier> armorDropList = ValidatedIdentifier.ofRegistry(Identifier.withDefaultNamespace("diamond_chestplate"), BuiltInRegistries.ITEM).toList();
 	public ValidatedBoolean keepHotbarOnDeath = new ValidatedBoolean(false);
-	public ValidatedList<ResourceLocation> hotbarDropList = ValidatedIdentifier.ofRegistry(ResourceLocation.withDefaultNamespace("diamond_pickaxe"), BuiltInRegistries.ITEM).toList();
+	public ValidatedList<Identifier> hotbarDropList = ValidatedIdentifier.ofRegistry(Identifier.withDefaultNamespace("diamond_pickaxe"), BuiltInRegistries.ITEM).toList();
 	public ValidatedEnum<AccessoryKeepMode> keepAccessories = new ValidatedEnum<>(AccessoryKeepMode.NONE);
-	public ValidatedList<ResourceLocation> accessoryKeepList = ValidatedIdentifier.ofRegistry(ResourceLocation.withDefaultNamespace("diamond"), BuiltInRegistries.ITEM).toList();
+	public ValidatedList<Identifier> accessoryKeepList = ValidatedIdentifier.ofRegistry(Identifier.withDefaultNamespace("diamond"), BuiltInRegistries.ITEM).toList();
 }

@@ -5,7 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import me.pajic.simple_death_improvements.SDI;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level./*? if > 1.21.10 {*//*gamerules.*//*?}*/GameRules;
+import net.minecraft.world.level./*? if > 1.21.10 {*/gamerules./*?}*/GameRules;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import net.minecraft.server.level.ServerPlayer;
@@ -34,7 +34,7 @@ public abstract class ServerPlayerMixin extends Player {
     private void restoreItems(ServerPlayer that, boolean keepEverything, Operation<Void> original) {
         if (
                 !keepEverything && !that.isSpectator() &&
-                !level().getGameRules()./*? if > 1.21.10 {*//*get*//*?} else {*/getBoolean/*?}*/(GameRules./*? if > 1.21.10 {*//*KEEP_INVENTORY*//*?} else {*/RULE_KEEPINVENTORY/*?}*/)
+                !level().getGameRules()./*? if > 1.21.10 {*/get/*?} else {*//*getBoolean*//*?}*/(GameRules./*? if > 1.21.10 {*/KEEP_INVENTORY/*?} else {*//*RULE_KEEPINVENTORY*//*?}*/)
         ) {
             if (SDI.CONFIG.keepArmorOnDeath.get() || SDI.CONFIG.keepHotbarOnDeath.get()) {
                 getInventory().replaceWith(that.getInventory());
