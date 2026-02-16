@@ -28,6 +28,8 @@ public class ModConfig extends Config {
 	public ValidatedList<Identifier> armorDropList = ValidatedIdentifier.ofRegistry(Identifier.withDefaultNamespace("diamond_chestplate"), BuiltInRegistries.ITEM).toList();
 	public ValidatedBoolean keepHotbarOnDeath = new ValidatedBoolean(false);
 	public ValidatedList<Identifier> hotbarDropList = ValidatedIdentifier.ofRegistry(Identifier.withDefaultNamespace("diamond_pickaxe"), BuiltInRegistries.ITEM).toList();
+	public ValidatedBoolean keepOffhandOnDeath = new ValidatedBoolean(false);
+	public ValidatedList<Identifier> offhandDropList = ValidatedIdentifier.ofRegistry(Identifier.withDefaultNamespace("diamond_pickaxe"), BuiltInRegistries.ITEM).toList();
 	public ValidatedEnum<AccessoryKeepMode> keepAccessories = new ValidatedEnum<>(AccessoryKeepMode.NONE);
 	public ValidatedList<Identifier> accessoryKeepList = ValidatedIdentifier.ofRegistry(Identifier.withDefaultNamespace("diamond"), BuiltInRegistries.ITEM).toList();
 }

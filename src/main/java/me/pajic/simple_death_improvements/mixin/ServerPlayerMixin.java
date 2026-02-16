@@ -36,7 +36,7 @@ public abstract class ServerPlayerMixin extends Player {
                 !keepEverything && !that.isSpectator() &&
                 !level().getGameRules()./*? if > 1.21.10 {*/get/*?} else {*//*getBoolean*//*?}*/(GameRules./*? if > 1.21.10 {*/KEEP_INVENTORY/*?} else {*//*RULE_KEEPINVENTORY*//*?}*/)
         ) {
-            if (SDI.CONFIG.keepArmorOnDeath.get() || SDI.CONFIG.keepHotbarOnDeath.get()) {
+            if (SDI.CONFIG.keepArmorOnDeath.get() || SDI.CONFIG.keepHotbarOnDeath.get() || SDI.CONFIG.keepOffhandOnDeath.get()) {
                 getInventory().replaceWith(that.getInventory());
             }
         }

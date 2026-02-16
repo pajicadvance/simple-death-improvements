@@ -25,10 +25,10 @@ public abstract class EntityEquipmentMixin {
 
     @WrapMethod(method = "dropAll")
     private void keepOffhandAndEquipment(LivingEntity entity, Operation<Void> original) {
-        if (entity instanceof Player && SDI.CONFIG.keepHotbarOnDeath.get() || SDI.CONFIG.keepArmorOnDeath.get()) {
+        if (entity instanceof Player && (SDI.CONFIG.keepHotbarOnDeath.get() || SDI.CONFIG.keepArmorOnDeath.get() || SDI.CONFIG.keepOffhandOnDeath.get())) {
             items.replaceAll((slot, stack) -> {
-                if (SDI.CONFIG.keepHotbarOnDeath.get() && slot.equals(EquipmentSlot.OFFHAND) &&
-                        !SDI.CONFIG.hotbarDropList.contains(SDI.getItemId(stack))) return stack;
+                if (SDI.CONFIG.keepOffhandOnDeath.get() && slot.equals(EquipmentSlot.OFFHAND) &&
+                        !SDI.CONFIG.offhandDropList.contains(SDI.getItemId(stack))) return stack;
                 if (SDI.CONFIG.keepArmorOnDeath.get() && !SDI.CONFIG.armorDropList.contains(SDI.getItemId(stack)) && (
                         slot.equals(EquipmentSlot.HEAD) ||
                         slot.equals(EquipmentSlot.CHEST) ||

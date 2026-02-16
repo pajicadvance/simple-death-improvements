@@ -45,10 +45,8 @@ public class InventoryMixin {
     //? if 1.21.1 {
     /*private boolean keepItems(boolean original, @Local List<ItemStack> list, @Local ItemStack item, @Local int i) {
         if (SDI.CONFIG.keepArmorOnDeath.get() && list.equals(armor) && !SDI.CONFIG.armorDropList.contains(SDI.getItemId(item))) return true;
-        if (SDI.CONFIG.keepHotbarOnDeath.get() && !SDI.CONFIG.hotbarDropList.contains(SDI.getItemId(item))) {
-            if (list.equals(offhand)) return true;
-            if (list.equals(items) && i < 9) return true;
-        }
+        if (SDI.CONFIG.keepHotbarOnDeath.get() && list.equals(items) && i < 9 && !SDI.CONFIG.hotbarDropList.contains(SDI.getItemId(item))) return true;
+		if (SDI.CONFIG.keepOffhandOnDeath.get() && list.equals(offhand) && !SDI.CONFIG.offhandDropList.contains(SDI.getItemId(item))) return true;
         return original;
     }
     *///?} else {
