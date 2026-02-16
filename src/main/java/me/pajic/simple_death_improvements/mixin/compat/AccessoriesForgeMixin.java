@@ -13,9 +13,11 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyArgs;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import org.spongepowered.asm.mixin.injection.invoke.arg.Args;
 
+import java.util.Collection;
 import java.util.stream.Stream;
 
 @IfModLoaded("accessories")
@@ -44,7 +46,7 @@ public class AccessoriesForgeMixin {
                     target = "Lnet/minecraft/world/entity/item/ItemEntity;setPickUpDelay(I)V"
             )
     )
-    private static void noAccessoryDespawn(Entity entity, ItemStack stack, CallbackInfoReturnable<Stream<ItemEntity>> cir, @Local ItemEntity itemEntity) {
+    private static void noAccessoryDespawn(Entity entity, ItemStack stack, Collection<ItemEntity> collection, CallbackInfo ci, @Local ItemEntity itemEntity) {
         if (SDI.CONFIG.noDeathItemDespawn.get()) {
             itemEntity.setUnlimitedLifetime();
 			SDI.debugLog("Set infinite lifetime to dropped accessories");
