@@ -21,7 +21,7 @@ import me.pajic.simple_death_improvements.platform.fabric.FabricPlatform;
 public class SDI {
 
 	public static final String MOD_ID = /*$ mod_id*/ "simple_death_improvements";
-	public static final String MOD_VERSION = /*$ mod_version*/ "1.4.3";
+	public static final String MOD_VERSION = /*$ mod_version*/ "1.5.0";
 	public static final String MOD_FRIENDLY_NAME = /*$ mod_name*/ "Simple Death Improvements";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static final Identifier CONFIG_RL = id("config");

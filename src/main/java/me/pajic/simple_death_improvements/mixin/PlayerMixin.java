@@ -15,6 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.At;
 //? if 1.21.1 {
 /*import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
+import me.pajic.simple_death_improvements.util.ModUtil;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.item.ItemStack;
@@ -79,13 +80,7 @@ public abstract class PlayerMixin implements PlayerAccess {
             )
     )
     private ItemEntity trySaveItemsOnDeath(Level level, double posX, double posY, double posZ, ItemStack itemStack, Operation<ItemEntity> original) {
-        if (!lastSafePos.equals(BlockPos.ZERO) && self.isDeadOrDying()) {
-            if (SDI.CONFIG.tryItemLavaSaveOnDeath.get() && self.isInLava() || SDI.CONFIG.tryItemVoidSaveOnDeath.get() && self.getY() < (double) (level.getMinBuildHeight() - 64)) {
-                SDI.debugLog("Dropped items for player {} at {} {} {}", self.getDisplayName().getString(), lastSafePos.getX(), lastSafePos.getY(), lastSafePos.getZ());
-                return original.call(level, (double) lastSafePos.getX() + 0.5, (double) lastSafePos.getY() + 1, (double) lastSafePos.getZ() + 0.5, itemStack);
-            }
-        }
-        return original.call(level, posX, posY, posZ, itemStack);
+		return ModUtil.trySaveItemsOnDeath(self, lastSafePos, level, posX, posY, posZ, itemStack, original);
     }
     *///?}
 

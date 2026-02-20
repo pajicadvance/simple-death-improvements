@@ -1,4 +1,4 @@
-package me.pajic.simple_death_improvements.config;
+package me.pajic.simple_death_improvements.util;
 
 import me.fzzyhmstrs.fzzy_config.util.EnumTranslatable;
 import org.jetbrains.annotations.NotNull;

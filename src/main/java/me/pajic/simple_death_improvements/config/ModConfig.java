@@ -8,6 +8,7 @@ import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedBoolean;
 import me.fzzyhmstrs.fzzy_config.validation.misc.ValidatedEnum;
 import me.fzzyhmstrs.fzzy_config.validation.number.ValidatedInt;
 import me.pajic.simple_death_improvements.SDI;
+import me.pajic.simple_death_improvements.util.AccessoryKeepMode;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 
@@ -22,6 +23,7 @@ public class ModConfig extends Config {
 	public ValidatedBoolean tryItemLavaSaveOnDeath = new ValidatedBoolean(true);
 	public ValidatedBoolean tryItemVoidSaveOnDeath = new ValidatedBoolean(true);
 	public ValidatedBoolean explosionResistantItems = new ValidatedBoolean(true);
+	public ValidatedBoolean noXpSplatterOnDeath = new ValidatedBoolean(true);
 	public ValidatedBoolean playerDropMoreXpOnDeath = new ValidatedBoolean(true);
 	public ValidatedInt droppedExperiencePercent = new ValidatedInt(80, 100, 1);
 	public ValidatedBoolean keepArmorOnDeath = new ValidatedBoolean(false);

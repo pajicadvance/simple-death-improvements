@@ -1,1 +1,6 @@
-- Updated to Minecraft 1.21.11.
+- The mod now saves items on death when dying while airborne and the block below the player is unsafe (lava or void).
+- New option "Disable XP splatter on death": Condenses all XP dropped on death into one big orb at the exact position the player died at. Enabled by default.
+- New option "Keep offhand on death": Keeps the offhand item on death. Previously was part of "Keep hotbar on death", now is its own option. Disabled by default.
+- Renamed option "Drop more XP on death" to "Lose less XP on death" and added a description for the "Percent of total XP dropped" option for better clarity on what the options do.
+- Fixed crash with the latest version of Accessories for NeoForge 1.21.1. Older versions of Accessories are no longer supported.
+- Dropped support for Minecraft 1.21.10.

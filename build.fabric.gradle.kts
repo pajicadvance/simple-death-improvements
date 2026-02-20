@@ -93,10 +93,10 @@ dependencies {
 	implementation("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
 	include("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
 
-	modImplementation("io.wispforest:accessories-fabric:${prop("deps.accessories")}") {
+	modCompileOnly("io.wispforest:accessories-fabric:${prop("deps.accessories")}") {
 		exclude(group = "net.fabricmc.fabric-api", module = "fabric-api")
 	}
-	modImplementation("io.wispforest:owo-lib:${prop("deps.owo")}") {
+	modCompileOnly("io.wispforest:owo-lib:${prop("deps.owo")}") {
 		exclude(group = "net.fabricmc.fabric-api", module = "fabric-api")
 	}
 }

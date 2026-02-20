@@ -88,7 +88,7 @@ dependencies {
 	implementation("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
 	jarJar("com.moulberry:mixinconstraints:${prop("deps.mixinconstraints")}")
 
-	implementation("io.wispforest:accessories-neoforge:${prop("deps.accessories")}")
+	compileOnly("io.wispforest:accessories-neoforge:${prop("deps.accessories")}")
 	compileOnlyApi("org.sinytra.forgified-fabric-api:fabric-api-base:0.4.42+d1308dedd1") {
 		exclude(group = "fabric-api")
 	}
