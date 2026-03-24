@@ -1,8 +1,8 @@
-package me.pajic.modid.platform.fabric;
+package me.pajic.simple_death_improvements.platform.fabric;
 
 //? fabric {
 
-import me.pajic.modid.ModTemplate;
+import me.pajic.simple_death_improvements.SDI;
 import dev.kikugie.fletching_table.annotation.fabric.Entrypoint;
 import net.fabricmc.api.ModInitializer;
 
@@ -11,7 +11,7 @@ public class FabricEntrypoint implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		ModTemplate.onInitialize();
+		SDI.onInitialize();
 	}
 }
 //?}

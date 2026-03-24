@@ -1,20 +1,20 @@
-package me.pajic.modid.platform.neoforge;
+package me.pajic.simple_death_improvements.platform.neoforge;
 
 //? neoforge {
 
-/*import me.pajic.modid.ModTemplate;
+/*import me.pajic.simple_death_improvements.SDI;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 
-@Mod(ModTemplate.MOD_ID)
-@EventBusSubscriber(modid = ModTemplate.MOD_ID)
+@Mod(SDI.MOD_ID)
+@EventBusSubscriber(modid = SDI.MOD_ID)
 public class NeoforgeEntrypoint {
 
 	@SubscribeEvent
 	private static void onCommonSetup(FMLCommonSetupEvent event) {
-		ModTemplate.onInitialize();
+		SDI.onInitialize();
 	}
 }
 *///?}
