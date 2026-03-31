@@ -1,1 +1,1 @@
-- Updated to Minecraft 26.1.
+- Relaxed MC version requirement so that I don't have to upload a new file every time MC gets a hotfix. No functional changes to the mod.
