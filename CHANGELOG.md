@@ -1,1 +1,1 @@
-- Relaxed MC version requirement so that I don't have to upload a new file every time MC gets a hotfix. No functional changes to the mod.
+- Preparation for MC 26.2. This version will be flagged as 26.2 compatible once it releases, and will still work on 26.1.

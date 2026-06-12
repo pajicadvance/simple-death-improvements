@@ -4,7 +4,13 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import me.pajic.simple_death_improvements.SDI;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -13,6 +19,10 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class ModUtil {
+
+	@SuppressWarnings("unchecked")
+	public static final EntityType<ExperienceOrb> XP_ORB = (EntityType<ExperienceOrb>) BuiltInRegistries.ENTITY_TYPE
+			.getValueOrThrow(ResourceKey.create(Registries.ENTITY_TYPE, Identifier.withDefaultNamespace("experience_orb")));
 
 	public static ItemEntity trySaveItemsOnDeath(
 			Player player,
