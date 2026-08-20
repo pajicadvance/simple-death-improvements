@@ -21,6 +21,11 @@ import javax.inject.Inject
 fun Project.prop(name: String): String = (findProperty(name) ?: "") as String
 fun Project.env(variable: String): String? = providers.environmentVariable(variable).orNull
 fun Project.envTrue(variable: String): Boolean = env(variable)?.toDefaultLowerCase() == "true"
+fun Project.propOrNull(name: String): String? =
+	(findProperty(name) as? String)
+		?.trim()
+		?.takeIf(String::isNotEmpty)
+		?.takeUnless { it == "[VERSIONED]" }
 
 abstract class ModPlatformPlugin @Inject constructor() : Plugin<Project> {
 	override fun apply(project: Project) = with(project) {
