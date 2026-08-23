@@ -40,34 +40,76 @@ fletchingTable {
 	}
 }
 
+val devOnly by sourceSets.creating
+
+val curiosRun by sourceSets.creating {
+	runtimeClasspath += sourceSets.main.get().runtimeClasspath
+}
+
+val accessoriesRun by sourceSets.creating {
+	runtimeClasspath += sourceSets.main.get().runtimeClasspath
+}
+
 neoForge {
 	version = property("deps.neoforge") as String
 
-	if (hasProperty("deps.parchment")) parchment {
-		val (mc, ver) = (property("deps.parchment") as String).split(':')
-		mappingsVersion = ver
-		minecraftVersion = mc
+	if (hasProperty("deps.parchment")) {
+		parchment {
+			val (mc, ver) = (property("deps.parchment") as String).split(':')
+			mappingsVersion = ver
+			minecraftVersion = mc
+		}
 	}
+
+	addModdingDependenciesTo(curiosRun)
+	addModdingDependenciesTo(accessoriesRun)
 
 	runs {
 		register("client") {
 			client()
 			gameDirectory = file("run/")
-			ideName = "NeoForge Client (${stonecutter.active?.version})"
+			ideName = "NeoForge Client (${prop("deps.minecraft")})"
 			programArgument("--username=Dev")
+		}
+		propOrNull("deps.curios")?.let {
+			register("clientCurios") {
+				client()
+				gameDirectory = file("run/curios")
+				ideName = "NeoForge Client + Curios (${prop("deps.minecraft")})"
+				programArgument("--username=Dev")
+				sourceSet = curiosRun
+			}
+		}
+		propOrNull("deps.accessories")?.let {
+			register("clientAccessories") {
+				client()
+				gameDirectory = file("run/accessories")
+				ideName = "NeoForge Client + Accessories (${prop("deps.minecraft")})"
+				programArgument("--username=Dev")
+				sourceSet = accessoriesRun
+			}
 		}
 		register("server") {
 			server()
 			gameDirectory = file("run/")
-			ideName = "NeoForge Server (${stonecutter.active?.version})"
+			ideName = "NeoForge Server (${prop("deps.minecraft")})"
 		}
 	}
 
 	mods {
 		register(property("mod.id") as String) {
 			sourceSet(sourceSets["main"])
+			sourceSet(devOnly)
 		}
 	}
+}
+
+tasks.named("processResources") {
+	dependsOn(
+		"kspDevOnlyKotlin",
+		"kspCuriosRunKotlin",
+		"kspAccessoriesRunKotlin",
+	)
 }
 
 repositories {
@@ -91,6 +133,14 @@ dependencies {
 	compileOnly("io.wispforest:accessories-neoforge:${prop("deps.accessories")}")
 	compileOnlyApi("org.sinytra.forgified-fabric-api:fabric-api-base:0.4.42+d1308dedd1") {
 		exclude(group = "fabric-api")
+	}
+
+	propOrNull("deps.curios")?.let { version ->
+		add(curiosRun.runtimeOnlyConfigurationName, "maven.modrinth:curios:$version")
+	}
+
+	propOrNull("deps.accessories")?.let { version ->
+		add(accessoriesRun.runtimeOnlyConfigurationName, "io.wispforest:accessories-neoforge:$version")
 	}
 }
 

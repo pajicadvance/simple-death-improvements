@@ -3,6 +3,7 @@ package me.pajic.simple_death_improvements;
 import me.fzzyhmstrs.fzzy_config.api.ConfigApiJava;
 import me.pajic.simple_death_improvements.compat.AccessoriesCompat;
 import me.pajic.simple_death_improvements.compat.CompatFlags;
+import me.pajic.simple_death_improvements.compat.CuriosApiCompat;
 import me.pajic.simple_death_improvements.config.ModConfig;
 import me.pajic.simple_death_improvements.platform.Platform;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -30,6 +31,9 @@ public class SDI {
 
 	public static void onInitialize() {
 		if (CompatFlags.ACCESSORIES_LOADED) AccessoriesCompat.init();
+		//? if neoforge {
+		/*if (CompatFlags.CURIOS_LOADED) CuriosApiCompat.init();
+		*///?}
 	}
 
 	public static Identifier getItemId(ItemStack stack) {
