@@ -43,14 +43,14 @@ dep.modmenu.coords = "com.terraformersmc:$id:$version"
 
 ["1.21.1"]
 mod.mc_releases = ["1.21", "1.21.1"]
-loader.neo = "21.1.244"
+loader.neo = "21.1.250"
 dep.mixson.coords = "com.github:Mixson:$version"
 include.mixson = "2.2.0"
-runtime.sodium = "0.8.12+mc1.21.1"
+runtime.sodium = "0.8.13+mc1.21.1"
 
 [fabric."1.21.1"]
 mod.mc_compat = ">=1.21 <=1.21.1"
-required.fabric-api = "0.116.14+1.21.1"
+required.fabric-api = "0.116.17+1.21.1"
 required.fzzy_config = "0.7.6+1.21"
 runtime.modmenu = "11.0.4"
 
@@ -61,14 +61,14 @@ required.fzzy_config = "0.7.6+1.21+neoforge"
 
 ["26.1"]
 mod.mc_releases = ["26.1", "26.1.1", "26.1.2"]
-loader.neo = "26.1.2.87"
+loader.neo = "26.1.2.107"
 dep.mixson.coords = "maven.modrinth:$id:$version"
 required.mixson = "2.2.0"
 runtime.sodium = "0.9.1+mc26.1.2"
 
 [fabric."26.1"]
 mod.mc_compat = "~26.1"
-required.fabric-api = "0.155.2+26.1.2"
+required.fabric-api = "0.155.3+26.1.2"
 required.fzzy_config = "0.7.6+26.1-pre-3"
 runtime.modmenu = "18.0.0"
 
@@ -79,14 +79,14 @@ required.fzzy_config = "0.7.6+26.1-pre-3+neoforge"
 
 ["26.2"]
 mod.mc_releases = ["26.2"]
-loader.neo = "26.2.0.36-beta"
+loader.neo = "26.2.0.82"
 dep.mixson.coords = "maven.modrinth:$id:$version"
 required.mixson = "2.2.0"
 runtime.sodium = "0.9.1+mc26.2"
 
 [fabric."26.2"]
 mod.mc_compat = "~26.2"
-required.fabric-api = "0.155.2+26.2"
+required.fabric-api = "0.160.0+26.2"
 required.fzzy_config = "0.7.6+26.2-pre-3"
 runtime.modmenu = "20.0.1"
 
