@@ -26,7 +26,7 @@ publish.dry_run = true
 loomx.loom_version = "1.17-SNAPSHOT"
 
 # dependencies
-loader.fabric = "0.19.3"
+loader.fabric = "0.19.5"
 dep.mixinconstraints.coords = "com.moulberry:$id:$version"
 dep.fzzy_config.coords = "me.fzzyhmstrs:$id:$version"
 dep.fzzy_config.slug = "fzzy-config"
