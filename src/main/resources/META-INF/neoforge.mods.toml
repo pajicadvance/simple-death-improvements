@@ -16,7 +16,4 @@ issueTrackerURL = "${issues_url}"
 [[mixins]]
 config = "${id}.mixins.json"
 
-[[accessTransformers]]
-file="${at}"
-
 ${dependencies}

@@ -25,6 +25,10 @@ repositories {
     strictMaven("https://maven.terraformersmc.com/", "TerraformersMC", "com.terraformersmc")
     strictMaven("https://maven.caffeinemc.net/releases", "CaffeineMC", "net.caffeinemc")
     strictMaven("https://maven.su5ed.dev/releases", "Sinytra", "org.sinytra.forgified-fabric-api")
+    strictMaven("https://maven.nucleoid.xyz/releases", "Nucleoid")
+    strictMaven("https://maven.theillusivec4.top/", "TheIllusiveC4")
+    strictMaven("https://repo.sleeping.town/", "Sleeping Town")
+    strictMaven("https://maven.ladysnake.org/releases", "Ladysnake Libs")
     strictMaven("https://thedarkcolour.github.io/KotlinForForge/", "Kotlin Forge")
     strictMaven("https://repo.nyon.dev/releases", "Kotlin Forge Again")
     ivy {
@@ -121,8 +125,6 @@ dependencies {
 
 neoForge {
     version = property("loader.neo") as String
-    accessTransformers.from(rootProject.file("src/main/resources/aw/${sc.current.project.substringBefore('-')}.cfg"))
-    validateAccessTransformers = true
 
     mods {
         register(property("mod.id") as String) {

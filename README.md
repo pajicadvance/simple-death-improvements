@@ -1,35 +1,29 @@
-# Multicutter
+# Simple Death Improvements
 
-Based on [Stonecutter Fabric & NeoForge template](https://github.com/stonecutter-versioning/stonecutter-template-multiloader)
+Dying in Minecraft can be quite annoying, and progress loss caused by unlucky circumstances is nothing short of frustrating. This mod aims to remedy most (if not all) of these problems by introducing non-intrusive, vanilla friendly tweaks to player death. The mod is made almost exclusively to provide an alternative to (in my opinion) bloated gravestone mods that are out there. Everything is configurable, so you can pick and choose what you like.
 
-- Multiloader and multiversion management with helper classes
-- Supports both obfuscated and unobfuscated game versions
-- Dependency handling using Stonecutter versioned properties
-- Versioned class tweakers and access transformers
-- Automatic Mixin and entrypoint registration
-- Automated Modrinth and CurseForge publishing
+## Features
 
-### Pre-configured content
+### Items dropped on death never despawn
 
-- Versions:
-    - 1.21.1 Fabric and NeoForge
-    - 26.1.2 Fabric and NeoForge
-    - 26.2 Fabric and NeoForge
-- Dependencies:
-    - Fabric API (required)
-    - Fzzy Config (required)
-    - Mixson (required)
-    - MixinConstraints (JiJ-d)
-    - Sodium (runtime)
+Items that you drop on death will never despawn, and will stay at the same place they dropped at forever. This gets rid of stressful runbacks to get your stuff back and lets you plan to recover your items without worrying about them disappearing.
 
-No instructions on how to use this yet. If you do want to try it out, the only big difference compared to other templates is that dependencies are declared inside `stonecutter.properties.toml` and not manually inside the build scripts. You only need to add repositories to the build scripts. You can see how pre-configured dependencies are added as examples.
+### No item and experience splatter
 
-The template may have bugs and oversights as I haven't moved any of my mods to it yet.
+When you die, your items and experience will drop condensed all together at the exact same spot you died at, instead of splattering all over the place. You no longer have to search for your items even after you arrive at your death point, and there's no longer a chance for your items to fly off into nearby lava.
 
-Tooling used:
-- [Fabric Loom](https://github.com/FabricMC/fabric-loom): Used for the Fabric build script
-- [ModDevGradle](https://github.com/neoforged/ModDevGradle): Used for the NeoForge build script
-- [Stonecutter](https://stonecutter.kikugie.dev/): Multiloader and multiversion handling
-- [Loom Backwards Compatibility](https://codeberg.org/KikuGie/loom-back-compat): Allows the Fabric build script to handle both obfuscated and unobfuscated versions of the game
-- [Fletching Table](https://stonecutter.kikugie.dev/wiki/fletching-table/#fletching-table-overview): Handles automatic mixin and entrypoint registration
-- [Mod Publish Plugin](https://github.com/modmuss50/mod-publish-plugin): Handles automated publishing to Modrinth and CurseForge
+### Lava and the Void item safeguarding
+
+When you die in a place where your items are not safe to be dropped (in or above lava or the Void), your items will drop at the last known nearest "safe spot" that you walked over instead, preserving all of your items. This essentially gets rid of every death which causes massive loss of progress, as your items no longer get destroyed, although, if you disable No item splatter, some of your items may still end up being destroyed.
+
+### Explosion resistant items
+
+Explosions will no longer affect dropped items. The mechanic is largely useless and when it happens to destroy your dropped items (especially during fights with the Wither) it's extremely frustrating.
+
+### Lose less experience on death
+
+You will now lose way less experience compared to vanilla when you die (default 20%). The experience loss in vanilla is too high for no good reason.
+
+### Keep items on death (off by default)
+
+Choose whether to keep armor items, hotbar items or equipped accessories on death in the mod configuration. These settings are ignored if the keep inventory gamerule is toggled on.

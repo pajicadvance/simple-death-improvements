@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "me.pajic.simple_death_improvements.mixin",
+  "minVersion": "0.8",
+  "compatibilityLevel": "${java}",
+  "plugin": "com.moulberry.mixinconstraints.ConstraintsMixinPlugin",
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  },
+  "mixins": [],
+  "client": []
+}

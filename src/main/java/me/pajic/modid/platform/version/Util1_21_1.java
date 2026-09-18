@@ -1,9 +1,0 @@
-package me.pajic.modid.platform.version;
-
-//? 1.21.1 {
-
-/*import me.pajic.modid.platform.MultiVersionUtil;
-
-public class Util1_21_1 implements MultiVersionUtil {
-}
-*///?}

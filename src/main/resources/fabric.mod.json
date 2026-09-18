@@ -25,7 +25,6 @@
   "mixins": [
     "${id}.mixins.json"
   ],
-  "accessWidener": "${ct}",
   "depends": {},
   "suggests": {}
 }
