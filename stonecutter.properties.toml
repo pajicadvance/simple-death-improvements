@@ -2,7 +2,7 @@
 mod.id = "simple_death_improvements"
 mod.name = "Simple Death Improvements"
 mod.group = "me.pajic"
-mod.version = "1.6.0"
+mod.version = "1.6.1"
 mod.description = "Less frustrating deaths - no item despawn, no item splatter, item safeguards and more"
 mod.authors = "pajic"
 mod.contributors = ""

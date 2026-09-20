@@ -1,4 +1,1 @@
-- Added Fabric 26.3 version.
-- Added NeoForge 26.2 version.
-- Re-added option to keep items in accessory slots, with support for slots from Trinkets Updated, Trinkets, Curios, and Ohmega.
-- Added option to edit the item despawn timer when item despawning isn't disabled.
+- Fixed crash on launch on NeoForge.
